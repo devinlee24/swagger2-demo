@@ -6,10 +6,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Api(tags = "用户管理")
 @RestController
@@ -17,7 +14,7 @@ import java.util.Map;
 public class UserController {
 
     // 创建线程安全的Map，模拟users信息的存储
-    static Map<Long, User> userMap = new HashMap<Long,User>();
+    static Map<Long, User> userMap = Collections.synchronizedMap(new HashMap<Long,User>());
 
     @GetMapping("/")
     @ApiOperation(value = "获取用户列表")
